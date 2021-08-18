@@ -15,6 +15,11 @@ function changeField({ state, name, value }) {
   };
 }
 
+// 이 부분은 slice로 얕은 복사를 하고
+// splice로 특정영역을 자르고 다른 값을 넣어줬는데
+// filter와 index를 이용해서 얕은복사 + 재할당한 것과 크게 달라보이진 않는다.
+// 재할당과 얕은 복사는 실수를 유발하므로 자제하는 것이 좋다.
+// 그러므로 map으로 하는게 최선으로 보임.
 function createNewCareers({ careers, changedCareer }) {
   const index = findCareerIndex({ careers, id: changedCareer.id });
   const newCareers = careers.slice();
